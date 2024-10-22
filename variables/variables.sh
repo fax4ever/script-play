@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-set -x
+set -e
 
 function nextImageVersion() {
     BUILD=1
     if [[ "${CURRENT_VERSION}" == ${ISPN_VERSION}* ]]; then
-        BUILD=$((BUILD+1))
+      BUILD=${CURRENT_VERSION##*-}
+      BUILD=$((BUILD+1))
     fi
     echo ${ISPN_VERSION}-${BUILD}
 }
